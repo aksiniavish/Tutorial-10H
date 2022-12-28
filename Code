@@ -1,0 +1,78 @@
+#  Оказывается ДВ хотел что бы я помогла всем написать и понять классы.
+#  Раз я это не сделала, плиз посмотрите этот код и попробуйте написать пару функций :)
+#  Если все равно не понятно, то сделайте вид что поняли, или задайте вопрос? не знаю...
+
+# =================================================================================
+# Человек
+class Human:  # создание супер класса
+    def __init__(self, name):
+        self.name = name  # атрибут супер класса
+
+    def __str__(self):  # пишет что self, это строка, а не пустой output
+        return f"Human: {self.name}."
+
+# =================================================================================
+# Учитель
+
+
+class Teacher(Human):  # создание нового класса под супер классом
+    def __init__(self, name, subject, homeroom="10'Н'"):
+        super().__init__(name)  # использует атрибут супер класса
+        self.subject = subject  # предмет
+        self.homeroom = homeroom  # руководитель класса ""
+
+    def __str__(self):  # пишет что self, это строка, а не пустой output
+        return f"Teacher: {self.name}, teaches {self.subject}, homeroom teacher of {self.homeroom}."
+
+# =================================================================================
+# Родитель
+
+
+class Parent(Human):  # создание нового класса под супер классом
+    def __init__(self, name, child):
+        super().__init__(name)  # использует атрибут супер класса
+        self.child = child  # ребенок
+
+    def __str__(self):  # пишет что self, это строка, а не пустой output
+        return f"Parent: {self.name}."
+
+# =================================================================================
+# Студент
+
+
+class Student(Human):  # создание нового класса под супер классом
+    def __init__(self, name, gender="M", grade="10", letter="H", is_taken=False):
+        super().__init__(name)  # использует атрибут супер класса
+        self.grade = grade  # класс
+        self.letter = letter  # буква класса
+        self.is_taken = is_taken  # в паре да/нет
+        self.significant_other = "Not taken"  # партнер
+        self.gender = gender  # пол
+
+    def __str__(self):  # пишет что self, это строка, а не пустой output
+        return f"Student: {self.name} from {self.grade}{self.letter}."
+
+    def date(self, other):  # система встречаний (ДВ настаивал на гомофобии)
+        if self.gender == other.gender:
+            print("Relationship prohibited.")  # "отношения разрешены"
+        else:
+            if not self.is_taken and not other.is_taken:
+                self.is_taken = True
+                self.significant_other = other
+                other.is_taken = True
+                other.significant_other = self
+                print(f"{self.name} and {other.name} are dating!")  # удачно
+            else:
+                print("Break up first!")  # неудачно
+
+# =================================================================================
+# Параметры
+
+
+student1 = Student("Cactus")
+student2 = Student("Vacuum", is_taken=False, letter="O", gender="F")
+
+# =================================================================================
+# Команды
+
+student1.date(student2)
