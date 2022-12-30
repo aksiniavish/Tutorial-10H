@@ -54,7 +54,7 @@ class Student(Human):  # создание нового класса под су�
 
     def date(self, other):  # система встречаний (ДВ настаивал на гомофобии)
         if self.gender == other.gender:
-            print("Relationship prohibited.")  # "отношения разрешены"
+            print("Relationship prohibited.")  # "отношения запрещены"
         else:
             if not self.is_taken and not other.is_taken:
                 self.is_taken = True
